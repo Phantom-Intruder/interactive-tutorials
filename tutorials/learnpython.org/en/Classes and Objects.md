@@ -98,6 +98,24 @@ It's used for assigning values in a class.
 
     var = NumberHolder(7)
     print(var.returnNumber()) #Prints '7'
+
+### self
+
+Now let's get to the `self` parameter that you have been seeing in the above sections. This parameter is similar to the `this` keyword in most other programming languages and is used for the object to reference itself. However, you don't necessarily have to call the keyword `self`, and it can be called whatever you want. The only hard requirement is that it has to be the first parameter in the function definition. You can see this in use in the above section, where the `self.number` is being assigned in the `__init__` function. This means that the number parameter is getting assigned as a value in the currently referenced object.
+
+Forgetting to place this parameter will throw an error. Let's take an example from above, but without the self parameter this time:
+
+    class MyClass:
+        variable = "blah"
+
+        def function():
+            print("This would not get printed.")
+
+    myobjectx = MyClass()
+
+    myobjectx.function()
+
+When the `myobjectx.function()` is invoked, you get an error `"TypeError: function() takes 0 positional arguments but 1 was given"`. This might seem slightly strange to you, considering that you haven't passed an argument. While it may be true that you haven't passed in a parameter, the object itself gets automatically passed as a parameter to the function. So behind the scenes, there is 1 parameter getting passed in.
     
 Exercise
 --------
