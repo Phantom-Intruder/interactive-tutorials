@@ -101,7 +101,7 @@ It's used for assigning values in a class.
 
 ### self
 
-Now let's get to the `self` parameter that you have been seeing in the above sections. This parameter is similar to the `this` keyword in most other programming languages and is used for the object to reference itself. However, you don't necessarily have to call the keyword `self`, and it can be called whatever you want. The only hard requirement is that it has to be the first parameter in the function definition. You can see this in use in the above section, where the `self.number` is being assigned in the `__init__` function. This means that the number parameter is getting assigned as a value in the currently referenced object.
+Now let's get to the `self` parameter that you have been seeing in the above sections. This parameter is similar to the `this` keyword in most other programming languages and is used for the object to reference itself. However, you don't necessarily have to call the keyword `self`, and it can be called whatever you want. The only hard requirement is that it has to be the first parameter in the function definition. However, it is recommended to use `self` as it improves code readability. You can see this in use in the above section, where the `self.number` is being assigned in the `__init__` function. This means that the number parameter is getting assigned as a value in the currently referenced object.
 
 Forgetting to place this parameter will throw an error. Let's take an example from above, but without the self parameter this time:
 
@@ -116,7 +116,11 @@ Forgetting to place this parameter will throw an error. Let's take an example fr
     myobjectx.function()
 
 When the `myobjectx.function()` is invoked, you get an error `"TypeError: function() takes 0 positional arguments but 1 was given"`. This might seem slightly strange to you, considering that you haven't passed an argument. While it may be true that you haven't passed in a parameter, the object itself gets automatically passed as a parameter to the function. So behind the scenes, there is 1 parameter getting passed in.
-    
+
+However, this behavior is different for static functions. You define a static function by placing the `@staticmethod` decorator above a function definition. Since static functions are shared among all objects of a class, Python does not automatically pass the object as a variable, meaning that you can have a static function inside a class without any parameters.
+
+Now that you know about `self`, you might have a question. If you look at the code presented in the `__init__()` section, you might notice that the `__init__()` function also has a self parameter. While the `__init__()` function can be easily mistaken to be a constructor of this class, the existence of the `self` parameter in here disproves this. After all, you can't pass an object that hasn't been created yet. The `__init__()` function runs _after_ the object is initialized, and is where you would initialize the attributes of the object. The constructor is a method called `__new__()`, and is used to do the actual object creation. Like the other methods, it also has an implicitly passed parameter, which is the `cls` parameter (naming is the recommended standard and not mandatory). This is the class itself.
+
 Exercise
 --------
 
