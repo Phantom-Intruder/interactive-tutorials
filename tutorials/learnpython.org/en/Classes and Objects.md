@@ -121,6 +121,31 @@ However, this behavior is different for static functions. You define a static fu
 
 Now that you know about `self`, you might have a question. If you look at the code presented in the `__init__()` section, you might notice that the `__init__()` function also has a self parameter. While the `__init__()` function can be easily mistaken to be a constructor of this class, the existence of the `self` parameter in here disproves this. After all, you can't pass an object that hasn't been created yet. The `__init__()` function runs _after_ the object is initialized, and is where you would initialize the attributes of the object. The constructor is a method called `__new__()`, and is used to do the actual object creation. Like the other methods, it also has an implicitly passed parameter, which is the `cls` parameter (naming is the recommended standard and not mandatory). This is the class itself.
 
+### Inheritence, encapsulation, polymorphism, etc...
+
+Python, like other languges that support OOP, have OOP concepts. However, it does not have these concepts to the same level as languages such as Java happen to have. Let's first consider inheritence.
+
+Inheritence allows child classes to inherit methods and properties from parent classes. In the same way that the child would extend the parent in Java, the child class would have the parent class as a parameter:
+
+    class Parent:
+        def __init__(self):
+            ...
+
+        def Func(self):
+            ...
+
+    class Child(Parent):
+        ...
+
+You can now call the functions defined in the parent class using an object in the child class:
+
+    child = Child()
+    child.Func()
+
+Polymorphism also works in the same way as it does in ordinary OOP based languages, meaning that you could override `Func()` in the above code in you children classes, and have the children behave differently when `Func()` is called.
+
+While inheritence has a pretty solid defintion in Python, encapsulation doesn't. In order to signify a protected member in a class you would use a convention where you prefix an underscore (_) to the variable, but this isn't enforced anywhere. To signify a private variable, you would use a double underscore (__). It is simply a convention which developers are supposed to respect unlike in other strictly type object oriented languages, where you would get a hard error if you tried to use the variable illegally.
+
 Exercise
 --------
 
