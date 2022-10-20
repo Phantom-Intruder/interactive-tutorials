@@ -5,6 +5,34 @@ Generators are very easy to implement, but a bit difficult to understand.
 
 Generators are used to create iterators, but with a different approach. Generators are simple functions which return an iterable set of items, one at a time, in a special way.
 
+Before we get too deep into generators, let's take a look at the `yield` keyword.
+
+### yield
+
+First, note that the `yield` keyword and generators are bound. Declaring the yield keyword inside a method automatically makes that object a generator object. So what does `yield` do?
+
+Imagine you were a data scientist, and you need to process a massive dataset. As you may know, these datasets can consist of millions of records, and the file itself can be a good couple of megabytes. This situation would be worse if you had to deal with several large datasets. Naturally, you would want to do something with this data, and not just print it out, meaning that you would probably want to pass the data into a function. However, putting all this data in a list that gets stored in memory can slow down both your program as well as the machine running it, and this is where `yield` shines.
+
+Instead of doing this:
+
+    def loop_file(file):
+        for line in file:
+            list.append(line)
+        return list
+
+where you have to store all the lines of the file inside a list, you can do this:
+
+    def loop_file(file):
+        for line in file:
+            yield line
+
+You can then call this function in the same way as calling a function that returned a list (such as the function in the former example):
+
+    for line in loop_file(file):
+        ...
+
+But now, you have a much better-optimized program since you aren't passing around variables that hold megabytes of data. So what happens here?
+
 When an iteration over a set of item starts using the for statement, the generator is run. Once the generator's function code reaches a "yield" statement, the generator yields its execution back to the for loop, returning a new value from the set. The generator function can generate as many values (possibly infinite) as it wants, yielding each one in its turn.
 
 Here is a simple example of a generator function which returns 7 random integers:
