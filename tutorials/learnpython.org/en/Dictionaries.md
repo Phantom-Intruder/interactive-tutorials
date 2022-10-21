@@ -50,6 +50,19 @@ or:
     phonebook.pop("John")
     print(phonebook)
 
+### Additional things to note
+
+Since the key of a dictionary is like its index, it means that duplicate keys are not allowed. Doing so would just replace the existing key-value pair with the new one. You are also allowed to use nonprimitives as values in a dictionary. For example, a list assigned to a key would also be perfectly acceptable:
+
+    phonebook = {
+       "John" : [938477566, 938477563, 938477562],
+       "Jack" : 938377264,
+       "Jill" : 947662781
+    }
+
+You could even declare a class and have an object of that class assigned as a value to the JSON variable. This flexibility makes dictionaries a powerful tool that goes hand in hand with file formats such as JSON. You can easily convert a Python dictionary to JSON using `JSON.dumps()`, and the other way around with `json.load(file)`.
+
+In addition to the dictionary methods mentioned above, there are a few other methods that might be worth considering. The `.get(<key>)` method can be used to get values when a key is provided. You could also pass in an additional parameter which will be returned as the default if the key doesn't exist in the dictionary. `.keys()` will return all the keys, `.values()` will return all the values, and the `dict1.update(dict2)` method will merge the values from `dict1` into `dict2`. The [documentation](https://python-reference.readthedocs.io/en/latest/docs/dict/) can provide a comprehensive list of usable methods.
 
 Exercise
 --------
